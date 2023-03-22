@@ -6,4 +6,17 @@ class Item
     @publish_date = publish_date
     @archived = archived
   end
+
+  def years_since(date)
+    today = Time.now
+    total = today.year - date.year
+    total -= 1 if
+         date.month > today.month or
+         (date.month >= today.month and date.day > today.day)
+    total
+  end
+
+  def can_be_archived?
+    years_since(@publish_date) > 10
+  end
 end
