@@ -19,4 +19,8 @@ class Item
   def can_be_archived?
     years_since(@publish_date) > 10
   end
+
+  def move_to_archive
+    @archived = true if can_be_archived? == true
+  end
 end
